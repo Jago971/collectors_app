@@ -1,0 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+form, .tst_answer {
+    display: block;
+    margin: 20px;
+}
