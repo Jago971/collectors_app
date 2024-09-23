@@ -21,43 +21,75 @@
 
 // html form ✅
 // $_GET form data ✅
-// move data to DB
+// move data to DB ✅
 
-//----------------------------------------------------------------------------------------------------------------------empty socks array
-$socks = [];
+// trainer tasks:
 
-//----------------------------------------------------------------------------------------------------------------------connect to DB
-$db = new PDO(
-    'mysql:host=DB;dbname=collection',
-    'root',
-    'password'
-);
-//----------------------------------------------------------------------------------------------------------------------defaulting
-$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-//----------------------------------------------------------------------------------------------------------------------preparing query
-$query = $db->prepare('SELECT * FROM `socks`');
-//----------------------------------------------------------------------------------------------------------------------execute query
-$result = $query->execute();
+// validation of inputs:
+// DB table for sizes, color, pattern ✅
+// dropdowns that populate colors, sizes, patterns ✅
 
-if ($result) {
-    $socks = $query->fetchAll();//--------------------------------------------------------------------------------------REASSIGN PLAYERS ARRAY
-} else {
-    echo 'not working';
+//----------------------------------------------------------------------------------------------------------------------dropdowns
+//----------------------------------------------------------------------------------------------------------------------connect DB function
+function connectDB() {
+    $db = new PDO(
+        'mysql:host=DB;dbname=collection',
+        'root',
+        'password'
+    );
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    return $db;
 }
-//----------------------------------------------------------------------------------------------------------------------form $_GET data
-$test = '';
-if ($_GET) {
-    $test = "{$_GET['size']} {$_GET['pattern']} {$_GET['color']}";
-
-    //------------------------------------------------------------------------------------------------------------------move form to DB
-    $query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
-    $result = $query->execute([
-        'size' => $_GET['size'],
-        'pattern' => $_GET['pattern'],
-        'color' => $_GET['color']
-    ]);
+//----------------------------------------------------------------------------------------------------------------------get table function
+function getTable($table, $db) {
+    $query = $db->prepare("SELECT `{$table}` FROM `{$table}s`");
+    $result = $query->execute();
+    if ($result) {
+        return $query->fetchAll();
+    } else {
+        echo 'not working'; //maybe return not working
+    }
 }
+//----------------------------------------------------------------------------------------------------------------------creating html options for select dropdown
+function dropDownOptions($rows) {
+    $options= '';
+    foreach($rows as $row) {
+        foreach ($row as $key => $value) {
+            $options .= "<option value=\"{$value}\">{$value}</option>";
+        }
+    }
+    return $options;
+}
+//----------------------------------------------------------------------------------------------------------return full html dropdown - select, options, /select
+function createDropdown($name) {
 
+    $start = "<select name=\"{$name}\" id=\"{name}\"><option selected=\"selected\">$name</option>";
+    $options = dropDownOptions(getTable($name, connectDB()));
+    $end = '</select><br><br>';
+    return $start . $options . $end;
+}
+function createSocksDiv($socksArr) {
+    $socksStr= '';
+    foreach($socksArr as $sock) {
+        $socksStr .= "<div class=\"sock\">
+        <p>Size: {$sock['size']}</p>
+        <p>Pattern: {$sock['pattern']}</p>
+        <p>Color: {$sock['color']}</p>
+        </div>";
+    }
+    return $socksStr;
+}
+function displaySocksCollection($db) {
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $query = $db->prepare('SELECT `id`, `size`, `pattern`, `color` FROM `socks`');
+    $result = $query->execute();
+    if ($result) {
+        $socksArr = $query->fetchAll();
+    } else {
+        echo 'not working';
+    }
+    return createSocksDiv($socksArr);
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,23 +97,31 @@ if ($_GET) {
 <head>
     <meta charset="UTF-8">
     <title>collectors_app</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        <?php include 'styles.css'; ?>
+    </style>
 </head>
-<body style="margin: 0; padding:0; position: relative;">
-<div style="margin: 0; position: relative; display: flex; flex-direction: column; align-items: center;">
+<body>
+<div class="container flex">
     <form method="get">
         <label for="size">Size:</label><br>
-        <input type="text" id="size" name="size" required><br>
+        <?php
+        echo createDropdown('size');
+        ?>
         <label for="pattern">Pattern:</label><br>
-        <input type="text" id="pattern" name="pattern" required><br>
+        <?php
+        echo createDropdown('pattern');
+        ?>
         <label for="color">Color:</label><br>
-        <input type="text" id="color" name="color" required><br><br>
+        <?php
+        echo createDropdown('color');
+        ?>
         <input type="submit">
     </form>
-    <div class="tst_answer">
-        <?php
-        echo $test;
-        ?>
+    <div class="collection flex">
+            <?php
+            echo displaySocksCollection(connectDB());
+            ?>
     </div>
 </div>
 </body>
