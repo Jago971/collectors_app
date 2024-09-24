@@ -17,18 +17,6 @@
 // create DB with 3 items, 3 stats each ✅
 // fetch db and display ✅
 
-// story 2 tasks:
-
-// html form ✅
-// $_GET form data ✅
-// move data to DB ✅
-
-// trainer tasks:
-
-// validation of inputs:
-// DB table for sizes, color, pattern ✅
-// dropdowns that populate colors, sizes, patterns ✅
-
 //----------------------------------------------------------------------------------------------------------------------required files
 require_once 'src/functions.php';
 ?>
@@ -45,19 +33,6 @@ require_once 'src/functions.php';
 <body>
 <div class="container flex">
     <form method="get">
-        <label for="size">Size:</label><br>
-        <?php
-        echo createDropdown('size');
-        ?>
-        <label for="pattern">Pattern:</label><br>
-        <?php
-        echo createDropdown('pattern');
-        ?>
-        <label for="color">Color:</label><br>
-        <?php
-        echo createDropdown('color');
-        ?>
-        <input type="submit">
     </form>
     <div class="collection flex">
             <?php
