@@ -58,7 +58,11 @@ function createSockDiv(array $socksArr): string {
 }
 //------------------------------------------------------------------------------------------returns the full collection of stored entries as a long string of divs
 function displaySocksCollection(PDO $db): string {
-    $query = $db->prepare('SELECT `id`, `size`, `pattern`, `color` FROM `socks`');
+    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color`
+FROM `socks`
+    JOIN `sizes` ON `socks`.`size` = `sizes`.`id`
+    JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id`
+    JOIN `colors` ON `socks`.`color` = `colors`.`id`;');
     $result = $query->execute();
     if ($result) {
         $socksArr = $query->fetchAll();
@@ -71,9 +75,21 @@ function displaySocksCollection(PDO $db): string {
 if ($_GET) {
     $db = connectDB();
     $query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
+    //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
     $result = $query->execute([
-        'size' => $_GET['size'],
-        'pattern' => $_GET['pattern'],
-        'color' => $_GET['color']
+        'size' => getRelatedNumberForDropdownOption('size', $_GET['size']),
+        'pattern' => getRelatedNumberForDropdownOption('pattern', $_GET['pattern']),
+        'color' => getRelatedNumberForDropdownOption('color', $_GET['color'])
     ]);
+}
+function getRelatedNumberForDropdownOption($stat, $option) {
+    $db = connectDB();
+    $query = $db->prepare("SELECT `socks`.`{$stat}` FROM `socks` JOIN `{$stat}s` ON `socks`.`{$stat}` = `{$stat}s`.`id` WHERE `{$stat}s`.`{$stat}` = '{$option}';");
+    $result = $query->execute();
+    if ($result) {
+        $num = $query->fetchAll();
+    } else {
+        echo 'error';
+    }
+    return $num[0][$stat];
 }
