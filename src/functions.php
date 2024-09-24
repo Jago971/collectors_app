@@ -20,7 +20,8 @@ function createSockDiv(array $socksArr): string {
     return $socksStr;
 }
 function displaySocksCollection(PDO $db): string {
-    $query = $db->prepare('SELECT `id`, `size`, `pattern`, `color` FROM `socks`');
+    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id`;');
+
     $result = $query->execute();
     if ($result) {
         $socksArr = $query->fetchAll();
