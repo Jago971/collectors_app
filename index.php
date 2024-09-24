@@ -1,26 +1,23 @@
 <?php
-// story one:
-// DB to store items
-// items must have at least 3 stats
-// display DB items
-
-// story two:
-// add new items
-
-
-// story 1 tasks:
-
-// git repo ✅
-// git connect ✅
-// git main ✅
-// git branch story 1 (S1) ✅
-// create DB with 3 items, 3 stats each ✅
-// fetch db and display ✅
-
-//----------------------------------------------------------------------------------------------------------------------required files
 require_once 'src/functions.php';
-?>
+$db = connectDB();
+$query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id`;');
+//SELECT ‘parent’.’name’, ‘children’.’name’
+//FROM ‘parents’
+//JOIN ‘parents_children’
+//  ON ‘parents’.’id’ = ‘parents_children’.’parent_id’
+//JOIN ‘children’
+//  ON ‘children’.’id’. = ‘parents_children’.’child_id’;
 
+$result = $query->execute();
+if ($result) {
+    $socksArr = $query->fetchAll();
+} else {
+    echo 'not working';
+}
+echo '<pre>';
+var_dump($socksArr);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

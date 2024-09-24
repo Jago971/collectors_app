@@ -4,7 +4,7 @@ require_once 'src/functions.php';
 use PHPUnit\Framework\TestCase;
 
 class createSockDivTest extends TestCase {
-    public function testCreateSockDiv(): void
+    public function testCreateSockDivSuccessTest(): void
     {
         // test inputs
         $input = [
@@ -35,7 +35,8 @@ class createSockDivTest extends TestCase {
 
         $this->assertEquals($expected, $actual);
     }
-    public function testCreateSockDivMalformedInputs(): void
+
+    public function testCreateSockDivMalformedInputsTest(): void
     {
         $inputA = 'Not an array';
 
@@ -43,7 +44,8 @@ class createSockDivTest extends TestCase {
 
         createSockDiv($inputA);
     }
-    public function testCreateSockDivWrongArrayFormat(): void
+
+    public function testCreateSockDivWrongArrayFormatTest(): void
     {
         $input = ['Not', 'an', 'array'];
 

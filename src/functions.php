@@ -1,5 +1,4 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------connect to DB
 function connectDB(): PDO {
     $db = new PDO(
         'mysql:host=DB;dbname=collection',
@@ -9,7 +8,6 @@ function connectDB(): PDO {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
 }
-//---------------------------------------------------------------------------------------------------------creates each sock div and ties together as one string
 function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
@@ -21,7 +19,6 @@ function createSockDiv(array $socksArr): string {
     }
     return $socksStr;
 }
-//------------------------------------------------------------------------------------------returns the full collection of stored entries as a long string of divs
 function displaySocksCollection(PDO $db): string {
     $query = $db->prepare('SELECT `id`, `size`, `pattern`, `color` FROM `socks`');
     $result = $query->execute();
@@ -32,3 +29,4 @@ function displaySocksCollection(PDO $db): string {
     }
     return createSockDiv($socksArr);
 }
+
