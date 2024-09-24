@@ -41,11 +41,18 @@ function createDropdown(string $name) : string {
 function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
-        $socksStr .= "<div class=\"sock\">
-        <p>Size: {$sock['size']}</p>
-        <p>Pattern: {$sock['pattern']}</p>
-        <p>Color: {$sock['color']}</p>
-        </div>";
+        $socksStr .=
+            "<div class=\"sock-BG flex\">
+                <div class=\"sock-container {$sock['size']} {$sock['color']}\">
+                      <div class=\"sock-ankle\">
+                            <div class=\"cuff detail\"></div>
+                            <div class=\"heel\"></div>
+                      </div>
+                      <div class=\"sock-foot\">
+                            <div class=\"toe\"></div>
+                      </div>
+                </div>
+            </div>";
     }
     return $socksStr;
 }
