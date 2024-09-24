@@ -32,7 +32,7 @@ function dropDownOptions(array $rows): string {
 }
 //----------------------------------------------------------------------------------------------------------return full html dropdown - select, options, /select
 function createDropdown(string $name) : string {
-    $start = "<select name=\"{$name}\" id=\"{name}\"><option disabled=\"disabled\" selected=\"selected\">$name</option>";
+    $start = "<select name=\"{$name}\" id=\"{$name}\"><option disabled=\"disabled\" selected=\"selected\">$name</option>";
     $options = dropDownOptions(getTable($name, connectDB()));
     $end = '</select><br><br>';
     return $start . $options . $end;
