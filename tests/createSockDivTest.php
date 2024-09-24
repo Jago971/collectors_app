@@ -20,7 +20,6 @@ class createSockDivTest extends TestCase {
             ]
         ];
 
-        // expected result
         $expected =
         "<div class=\"sock\">
         <p>Size: size1</p>
@@ -32,10 +31,24 @@ class createSockDivTest extends TestCase {
         <p>Color: color2</p>
         </div>";
 
-        //actual
         $actual = createSockDiv($input);
 
-        // compare
         $this->assertEquals($expected, $actual);
+    }
+    public function testCreateSockDivMalformedInputs(): void
+    {
+        $inputA = 'Not an array';
+
+        $this->expectException(TypeError::class);
+
+        createSockDiv($inputA);
+    }
+    public function testCreateSockDivWrongArrayFormat(): void
+    {
+        $input = ['Not', 'an', 'array'];
+
+        $this->expectException(TypeError::class);
+
+        createSockDiv($input);
     }
 }
