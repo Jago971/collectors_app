@@ -16,6 +16,10 @@ require_once 'src/functions.php';
     </style>
 </head>
 <body>
+<div class="title flex">
+    <div class="flex"><h1>ODD SOCKS COLLECTION</h1></div>
+    <div class="flex"><h3>a place to keep a collection of your odd socks</h3></div>
+</div>
 <div class="container flex">
     <form method="get">
     </form>

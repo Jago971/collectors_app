@@ -9,6 +9,29 @@ body {
 .flex {
     display: flex;
 }
+.title {
+    position: relative;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 3rem;
+    background-color: #f0f0f0;
+    .flex {
+        position: relative;
+        height: 2rem;
+        align-items: center;
+    }
+    .flex:first-of-type {
+        margin-right: 1rem;
+    }
+    h1, h3 {
+        line-height: 0;
+        width: fit-content;
+        margin: 0;
+    }
+    h3 {
+        font-weight: 500;
+    }
+}
 .interactions {
     background-color: #f0f0f0;
     justify-content: space-between;
@@ -176,12 +199,12 @@ form {
 
 
 .sock-BG {
-    height: 300px;
+    height: 390px;
     width: 300px;
     position: relative;
     background-color: #f0f0f0;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     border-radius: 1rem;
     box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
 }
@@ -243,20 +266,51 @@ form {
     height: 100%;
     width: 100%;
     border-radius: 1rem;
-    background-color: transparent;
-    color: transparent;
-    transition: all 0.25s;
+    background-color: grey;
+    transition: all 0.5s;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    height: 30%;
+    overflow-y: hidden;
+    bottom: 0;
+    h3, .description-container {
+        height: 2rem;
+        padding: 0;
+    }
+    .description-container {
+        position: relative;
+        overflow-y: hidden;
+        transition: all 0.5s;
+    }
     h3 {
         font-size: 2rem;
+        margin: 1rem;
     }
     p {
+        margin-top: 0;
         font-size: 1.5rem;
     }
 }
-.description:hover {
-    background-color: grey;
-    color: black;
+.cover{
+    position: absolute;
+    height: 2rem;
+    width: 4rem;
+    top: 0;
+    right: 0;
+    background-color: gray;
+    text-align: start;
+    transition: all 0.75s;
 }
+.description:hover {
+    height: 100%;
+    .description-container {
+        height: 100%;
+    }
+    .cover {
+        background-color: transparent;
+        color: transparent;
+        transition: all 0s;
+    }
+}
+

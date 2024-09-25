@@ -24,7 +24,7 @@ function createSockDiv(array $socksArr): string {
                 </div>
                 <div class=\"description flex\">
                     <h3>{$sock['name']}</h3>
-                    <p>{$sock['description']}</p>
+                    <div class=\"description-container\"><p>{$sock['description']}</p><p class=\"cover\">...</p></div>
                 </div>
             </div>";
     }
