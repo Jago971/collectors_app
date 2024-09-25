@@ -12,15 +12,17 @@ function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
         $socksStr .= "<div class=\"sock\">
+        <p>Name: {$sock['name']}</p>
         <p>Size: {$sock['size']}</p>
         <p>Pattern: {$sock['pattern']}</p>
         <p>Color: {$sock['color']}</p>
+        <p>Description: {$sock['description']}</p>
         </div>";
     }
     return $socksStr;
 }
 function displaySocksCollection(PDO $db): string {
-    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id`;');
+    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color`, `socks`.`name`, `socks`.`description` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id`;');
 
     $result = $query->execute();
     if ($result) {
@@ -30,4 +32,3 @@ function displaySocksCollection(PDO $db): string {
     }
     return createSockDiv($socksArr);
 }
-
