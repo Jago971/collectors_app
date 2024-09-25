@@ -224,3 +224,17 @@ body {
     border-radius: 50%;
     );
 }
+/*-----------------------------------------------------------------sock hover description box*/
+.description {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: transparent;
+    color: transparent;
+    transition: all 0.25s;
+}
+.description:hover {
+    background-color: grey;
+    color: black;
+}

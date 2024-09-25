@@ -52,6 +52,10 @@ function createSockDiv(array $socksArr): string {
                             <div class=\"toe\"></div>
                       </div>
                 </div>
+                <div class=\"description\">
+                    <h3>{$sock['name']}</h3>
+                    <p>{$sock['description']}</p>
+                </div>
             </div>";
     }
     return $socksStr;
