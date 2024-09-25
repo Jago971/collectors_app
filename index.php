@@ -26,7 +26,7 @@ require_once 'src/functions.php';
         <form method="get" class="flex">
             <div class="small-inputs flex">
                 <label for="name">Name:</label>
-                <input name="name" id="name" type="text">
+                <input name="name" id="name" type="text" required="required">
                 <label for="size">Size:</label>
                 <?php
                 echo createDropdown('size');
