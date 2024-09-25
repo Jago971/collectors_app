@@ -4,7 +4,7 @@ require_once 'src/functions.php';
 use PHPUnit\Framework\TestCase;
 
 class dropDownOptionsTest extends TestCase {
-    public function testDropDownOptions(): void
+    public function testDropDownOptionsSuccessTest(): void
     {
         // test inputs
         $input = [
