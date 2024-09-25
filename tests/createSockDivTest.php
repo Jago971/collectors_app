@@ -24,19 +24,35 @@ class createSockDivTest extends TestCase {
             ]
         ];
 
-        $expected = "<div class=\"sock\">
-        <p>Name: name1</p>
-        <p>Size: size1</p>
-        <p>Pattern: pattern1</p>
-        <p>Color: color1</p>
-        <p>Description: description1</p>
-        </div><div class=\"sock\">
-        <p>Name: name2</p>
-        <p>Size: size2</p>
-        <p>Pattern: pattern2</p>
-        <p>Color: color2</p>
-        <p>Description: description2</p>
-        </div>";
+        $expected = "<div class=\"sock-BG flex\">
+                <div class=\"sock-container size1 color1\">
+                      <div class=\"sock-ankle\">
+                            <div class=\"cuff detail\"></div>
+                            <div class=\"heel\"></div>
+                      </div>
+                      <div class=\"sock-foot\">
+                            <div class=\"toe\"></div>
+                      </div>
+                </div>
+                <div class=\"description flex\">
+                    <h3>name1</h3>
+                    <div class=\"description-container\"><p>description1</p><p class=\"cover\">...</p></div>
+                </div>
+            </div><div class=\"sock-BG flex\">
+                <div class=\"sock-container size2 color2\">
+                      <div class=\"sock-ankle\">
+                            <div class=\"cuff detail\"></div>
+                            <div class=\"heel\"></div>
+                      </div>
+                      <div class=\"sock-foot\">
+                            <div class=\"toe\"></div>
+                      </div>
+                </div>
+                <div class=\"description flex\">
+                    <h3>name2</h3>
+                    <div class=\"description-container\"><p>description2</p><p class=\"cover\">...</p></div>
+                </div>
+            </div>";
 
         $actual = createSockDiv($input);
 
