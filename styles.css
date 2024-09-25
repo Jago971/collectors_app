@@ -54,17 +54,20 @@ body {
         margin-right: 0;
     }
 }
+
+.add, .small-inputs, .description-input {
+    flex-direction: column;
+}
 form {
-    flex-wrap: wrap;
+    gap: 0.5rem;
+    label:not(:first-of-type) {
+        margin-top: 0.5rem
+    }
 }
-.dropdowns, .text-inputs {
-    flex: 0 0 50%;
+.description-input > textarea {
+    flex: 1;
+    margin-bottom: 0.5rem;
 }
-.submit {
-    flex: 0 0 100%;
-}
-
-
 
 
 .collection {

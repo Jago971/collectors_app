@@ -8,6 +8,7 @@ function connectDB(): PDO {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
 }
+
 function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
@@ -30,6 +31,7 @@ function createSockDiv(array $socksArr): string {
     }
     return $socksStr;
 }
+
 function displaySocksCollection(PDO $db): string {
     $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color`, `socks`.`name`, `socks`.`description` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id`;');
 
@@ -40,4 +42,57 @@ function displaySocksCollection(PDO $db): string {
         echo 'not working';
     }
     return createSockDiv($socksArr);
+}
+
+
+
+
+function getTable(string $table,PDO $db): array {
+    $query = $db->prepare("SELECT `{$table}` FROM `{$table}s`");
+    $result = $query->execute();
+    if ($result) {
+        return $query->fetchAll();
+    } else {
+        throw new Exception('error');
+    }
+}
+
+function dropDownOptions(array $rows): string {
+    $options= '';
+    foreach($rows as $row) {
+        foreach ($row as $key => $value) {
+            $options .= "<option value=\"{$value}\">{$value}</option>";
+        }
+    }
+    return $options;
+}
+
+function createDropdown(string $name) : string {
+    $start = "<select name=\"{$name}\" id=\"{$name}\"><option disabled=\"disabled\" selected=\"selected\">$name</option>";
+    $options = dropDownOptions(getTable($name, connectDB()));
+    $end = '</select>';
+    return $start . $options . $end;
+}
+
+if ($_GET) {
+    $db = connectDB();
+    $query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
+    //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
+    $result = $query->execute([
+        'size' => getRelatedNumberForDropdownOption('size', $_GET['size']),
+        'pattern' => getRelatedNumberForDropdownOption('pattern', $_GET['pattern']),
+        'color' => getRelatedNumberForDropdownOption('color', $_GET['color'])
+    ]);
+}
+
+function getRelatedNumberForDropdownOption($stat, $option) {
+    $db = connectDB();
+    $query = $db->prepare("SELECT `socks`.`{$stat}` FROM `socks` JOIN `{$stat}s` ON `socks`.`{$stat}` = `{$stat}s`.`id` WHERE `{$stat}s`.`{$stat}` = '{$option}';");
+    $result = $query->execute();
+    if ($result) {
+        $num = $query->fetchAll();
+    } else {
+        echo 'error';
+    }
+    return $num[0][$stat];
 }

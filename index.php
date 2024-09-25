@@ -20,14 +20,44 @@ require_once 'src/functions.php';
     <div class="flex"><h1>ODD SOCKS COLLECTION</h1></div>
     <div class="flex"><h3>a place to keep a collection of your odd socks</h3></div>
 </div>
-<div class="container flex">
-    <form method="get">
-    </form>
-    <div class="collection flex">
-        <?php
-        echo displaySocksCollection(connectDB());
-        ?>
+<div class="interactions flex">
+    <div class="interaction add flex">
+        <h1>ADD</h1>
+        <form method="get" class="flex">
+            <div class="small-inputs flex">
+                <label for="name">Name:</label>
+                <input name="name" id="name" type="text">
+                <label for="size">Size:</label>
+                <?php
+                echo createDropdown('size');
+                ?>
+                <label for="pattern">Pattern:</label>
+                <?php
+                echo createDropdown('pattern');
+                ?>
+                <label for="color">Color:</label>
+                <?php
+                echo createDropdown('color');
+                ?>
+            </div>
+            <div class="description-input flex">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description"></textarea>
+                <input class="submit" type="submit">
+            </div>
+        </form>
     </div>
+    <div class="interaction">
+        <h1>EDIT</h1>
+    </div>
+    <div class="interaction">
+        <h1>DELETE</h1>
+    </div>
+</div>
+<div class="collection flex">
+    <?php
+    echo displaySocksCollection(connectDB());
+    ?>
 </div>
 </body>
 </html>
