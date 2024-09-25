@@ -14,6 +14,7 @@ body {
     flex-wrap: wrap;
     margin: 0;
     padding: 3rem;
+    padding-bottom: 0;
     background-color: #f0f0f0;
     .flex {
         position: relative;
@@ -24,7 +25,6 @@ body {
         margin-right: 1rem;
     }
     h1, h3 {
-        line-height: 0;
         width: fit-content;
         margin: 0;
     }
@@ -32,17 +32,23 @@ body {
         font-weight: 500;
     }
 }
+@media screen and (max-width: 510px) {
+    .title > .flex:last-of-type {
+        margin-top: 2rem;
+        height: fit-content;
+    }
+}
 .interactions {
     background-color: #f0f0f0;
     justify-content: space-between;
     padding: 3rem;
     gap: 3rem;
-    overflow-x: hidden;
+    flex-wrap: wrap;
 }
 .interaction {
     background-color: white;
     border-radius: 1rem;
-    flex-grow: 1;
+    flex: 1;
     box-shadow: 0 0 2rem 0 rgba(0,0,0,0.1);
     text-align: center;
     padding: 0 2rem 2rem 2rem;
@@ -58,7 +64,11 @@ body {
 .add, .small-inputs, .description-input {
     flex-direction: column;
 }
+.small-inputs, .description-input {
+    flex: 1;
+}
 form {
+    justify-content: center;
     gap: 0.5rem;
     label:not(:first-of-type) {
         margin-top: 0.5rem
@@ -68,12 +78,17 @@ form {
     flex: 1;
     margin-bottom: 0.5rem;
 }
-
+@media screen and (max-width: 500px) {
+    form {
+        flex-direction: column;
+    }
+}
 
 .collection {
     flex-wrap: wrap;
     gap: 2rem;
     padding: 3rem;
+    justify-content: center;
 }
 .sock {
     background-color: #f0f0f0;
@@ -203,7 +218,7 @@ form {
 
 .sock-BG {
     height: 390px;
-    width: 300px;
+    width: 250px;
     position: relative;
     background-color: #f0f0f0;
     justify-content: center;
@@ -213,7 +228,7 @@ form {
 }
 .sock-container {
     height: 280px;
-    width: 280px;
+    width: 250px;
     position: relative;
     background-color: #f0f0f0;
 }

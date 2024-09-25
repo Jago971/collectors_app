@@ -76,12 +76,14 @@ function createDropdown(string $name) : string {
 
 if ($_GET) {
     $db = connectDB();
-    $query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
+    $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description)");
     //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
     $result = $query->execute([
+        'name' => $_GET['name'],
         'size' => getRelatedNumberForDropdownOption('size', $_GET['size']),
         'pattern' => getRelatedNumberForDropdownOption('pattern', $_GET['pattern']),
-        'color' => getRelatedNumberForDropdownOption('color', $_GET['color'])
+        'color' => getRelatedNumberForDropdownOption('color', $_GET['color']),
+        'description' => $_GET['description']
     ]);
 }
 
