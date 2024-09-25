@@ -77,17 +77,19 @@ function createDropdown(string $name) : string {
     return $start . $options . $end;
 }
 
-if ($_GET) {
-    $db = connectDB();
-    $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description)");
-    //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
-    $result = $query->execute([
-        'name' => $_GET['name'],
-        'size' => getRelatedNumberForDropdownOption('size', $_GET['size']),
-        'pattern' => getRelatedNumberForDropdownOption('pattern', $_GET['pattern']),
-        'color' => getRelatedNumberForDropdownOption('color', $_GET['color']),
-        'description' => $_GET['description']
-    ]);
+function insertIntoDatabase() {
+    if ($_POST) {
+        $db = connectDB();
+        $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description)");
+        //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
+        $result = $query->execute([
+            'name' => $_POST['name'],
+            'size' => getRelatedNumberForDropdownOption('size', $_POST['size']),
+            'pattern' => getRelatedNumberForDropdownOption('pattern', $_POST['pattern']),
+            'color' => getRelatedNumberForDropdownOption('color', $_POST['color']),
+            'description' => $_POST['description']
+        ]);
+    }
 }
 
 function getRelatedNumberForDropdownOption($stat, $option) {

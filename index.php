@@ -1,5 +1,6 @@
 <?php
 require_once 'src/functions.php';
+insertIntoDatabase();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +23,8 @@ require_once 'src/functions.php';
 </div>
 <div class="interactions flex">
     <div class="interaction add flex">
-        <h1>ADD</h1>
-        <form method="get" class="flex">
+        <h1>ADD NEW SOCK</h1>
+        <form method="post" class="flex">
             <div class="small-inputs flex">
                 <label for="name">Name:</label>
                 <input name="name" id="name" type="text" required="required">
@@ -46,12 +47,6 @@ require_once 'src/functions.php';
                 <input class="submit" type="submit">
             </div>
         </form>
-    </div>
-    <div class="interaction">
-        <h1>EDIT</h1>
-    </div>
-    <div class="interaction">
-        <h1>DELETE</h1>
     </div>
 </div>
 <div class="collection flex">
