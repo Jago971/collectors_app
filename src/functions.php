@@ -8,10 +8,16 @@ function connectDB(): PDO {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $db;
 }
+function bounceNumber() {
+    $num = 0;
+    $num++;
+    return $num;
+}
 
 function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
+        $num = bounceNumber();
         $socksStr .=
             "<div class=\"sock-BG flex\">
                 <div class=\"sock-container {$sock['size']} {$sock['color']}\">
@@ -23,7 +29,7 @@ function createSockDiv(array $socksArr): string {
                             <div class=\"toe\"></div>
                       </div>
                 </div>
-                <div class=\"description flex\">
+                <div class=\"description flex bounce{$num}\">
                     <h3>{$sock['name']}</h3>
                     <div class=\"description-container\"><p>{$sock['description']}</p><p class=\"cover\">...</p></div>
                 </div>

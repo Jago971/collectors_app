@@ -225,6 +225,10 @@ form {
     align-items: start;
     border-radius: 1rem;
     box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
+    transition: scale 0.25s;
+}
+.sock-BG:hover {
+    scale: 1.05;
 }
 .sock-container {
     height: 280px;
@@ -283,7 +287,6 @@ form {
     overflow-wrap: break-word;
     padding: 0.5rem;
     position: absolute;
-    height: 100%;
     width: 100%;
     border-radius: 1rem;
     background-color: grey;
@@ -312,6 +315,34 @@ form {
         font-size: 1.5rem;
     }
 }
+/*@keyframes descriptionBounce {*/
+/*    0% {height: 30%}*/
+/*    90% {height: 30%}*/
+/*    92% {height: 32%}*/
+/*    94% {height: 30%}*/
+/*    96% {height: 30%}*/
+/*    98% {height: 32%}*/
+/*    100% {height: 30%}*/
+/*}*/
+/*.bounce1 {*/
+/*    animation: descriptionBounce 5s linear infinite;*/
+/*    animation-delay: 0.5s;*/
+/*}*/
+/*.bounce2 {*/
+/*    animation: descriptionBounce 5s linear infinite;*/
+/*    animation-delay: 1s;*/
+/*}*/
+/*.bounce3 {*/
+/*    animation: descriptionBounce 5s linear infinite;*/
+/*    animation-delay: 1.5s;*/
+/*}*/
+/*.bounce4 {*/
+/*    animation: descriptionBounce 5s linear infinite;*/
+/*    animation-delay: 2s;*/
+/*}*/
+
+
+
 .cover{
     position: absolute;
     height: 2rem;
@@ -324,6 +355,7 @@ form {
 }
 .description:hover {
     height: 100%;
+    animation: unset;
     .description-container {
         height: 100%;
     }
