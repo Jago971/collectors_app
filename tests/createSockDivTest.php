@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 class createSockDivTest extends TestCase {
     public function testCreateSockDivSuccessTest(): void
     {
-        // test inputs
         $input = [
             [
                 'name' => 'name1',
@@ -55,25 +54,20 @@ class createSockDivTest extends TestCase {
             </div>";
 
         $actual = createSockDiv($input);
-
         $this->assertEquals($expected, $actual);
     }
 
     public function testCreateSockDivMalformedInputsTest(): void
     {
         $inputA = 'Not an array';
-
         $this->expectException(TypeError::class);
-
         createSockDiv($inputA);
     }
 
     public function testCreateSockDivWrongArrayFormatTest(): void
     {
         $input = ['Not', 'an', 'array'];
-
         $this->expectException(TypeError::class);
-
         createSockDiv($input);
     }
 }

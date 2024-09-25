@@ -44,9 +44,6 @@ function displaySocksCollection(PDO $db): string {
     return createSockDiv($socksArr);
 }
 
-
-
-
 function getTable(string $table,PDO $db): array {
     $query = $db->prepare("SELECT `{$table}` FROM `{$table}s`");
     $result = $query->execute();
