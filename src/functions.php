@@ -11,13 +11,22 @@ function connectDB(): PDO {
 function createSockDiv(array $socksArr): string {
     $socksStr= '';
     foreach($socksArr as $sock) {
-        $socksStr .= "<div class=\"sock\">
-        <p>Name: {$sock['name']}</p>
-        <p>Size: {$sock['size']}</p>
-        <p>Pattern: {$sock['pattern']}</p>
-        <p>Color: {$sock['color']}</p>
-        <p>Description: {$sock['description']}</p>
-        </div>";
+        $socksStr .=
+            "<div class=\"sock-BG flex\">
+                <div class=\"sock-container {$sock['size']} {$sock['color']}\">
+                      <div class=\"sock-ankle\">
+                            <div class=\"cuff detail\"></div>
+                            <div class=\"heel\"></div>
+                      </div>
+                      <div class=\"sock-foot\">
+                            <div class=\"toe\"></div>
+                      </div>
+                </div>
+                <div class=\"description flex\">
+                    <h3>{$sock['name']}</h3>
+                    <p>{$sock['description']}</p>
+                </div>
+            </div>";
     }
     return $socksStr;
 }

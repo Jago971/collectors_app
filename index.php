@@ -15,9 +15,9 @@ require_once 'src/functions.php';
     <form method="get">
     </form>
     <div class="collection flex">
-            <?php
-            echo displaySocksCollection(connectDB());
-            ?>
+        <?php
+        echo displaySocksCollection(connectDB());
+        ?>
     </div>
 </div>
 </body>
