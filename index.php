@@ -20,20 +20,28 @@ require_once 'src/functions.php';
 <div class="interactions flex">
     <div class="interaction">
         <h1>ADD</h1>
-        <form method="get">
-            <label for="size">Size:</label>
-            <?php
-            echo createDropdown('size');
-            ?>
-            <label for="pattern">Pattern:</label>
-            <?php
-            echo createDropdown('pattern');
-            ?>
-            <label for="color">Color:</label>
-            <?php
-            echo createDropdown('color');
-            ?>
-            <input type="submit">
+        <form method="get" class="flex">
+            <div class="dropdowns">
+                <label for="size">Size:</label>
+                <?php
+                echo createDropdown('size');
+                ?>
+                <label for="pattern">Pattern:</label>
+                <?php
+                echo createDropdown('pattern');
+                ?>
+                <label for="color">Color:</label>
+                <?php
+                echo createDropdown('color');
+                ?>
+            </div>
+            <div class="text-inputs">
+                <label for="name">Name:</label>
+                <input name="name" id="name" type="text">
+                <label for="description">Name:</label>
+                <input name="description" id="description" type="text">
+            </div>
+            <input class="submit" type="submit">
         </form>
     </div>
     <div class="interaction">

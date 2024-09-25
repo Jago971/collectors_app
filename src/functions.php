@@ -52,7 +52,7 @@ function createSockDiv(array $socksArr): string {
                             <div class=\"toe\"></div>
                       </div>
                 </div>
-                <div class=\"description\">
+                <div class=\"description flex\">
                     <h3>{$sock['name']}</h3>
                     <p>{$sock['description']}</p>
                 </div>
@@ -62,7 +62,7 @@ function createSockDiv(array $socksArr): string {
 }
 //------------------------------------------------------------------------------------------returns the full collection of stored entries as a long string of divs
 function displaySocksCollection(PDO $db): string {
-    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color`
+    $query = $db->prepare('SELECT `socks`.`size`, `sizes`.`size`, `socks`.`pattern`, `patterns`.`pattern`, `socks`.`color`, `colors`.`color`, `socks`.`name`, `socks`.`description`
 FROM `socks`
     JOIN `sizes` ON `socks`.`size` = `sizes`.`id`
     JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id`
