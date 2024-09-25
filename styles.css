@@ -280,6 +280,7 @@ form {
 }
 /*-----------------------------------------------------------------sock hover description box*/
 .description {
+    overflow-wrap: break-word;
     padding: 0.5rem;
     position: absolute;
     height: 100%;
