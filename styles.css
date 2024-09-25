@@ -1,0 +1,316 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'ubuntu';
+}
+.flex {
+    display: flex;
+}
+.title {
+    position: relative;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 3rem;
+    background-color: #f0f0f0;
+    .flex {
+        position: relative;
+        height: 2rem;
+        align-items: center;
+    }
+    .flex:first-of-type {
+        margin-right: 1rem;
+    }
+    h1, h3 {
+        line-height: 0;
+        width: fit-content;
+        margin: 0;
+    }
+    h3 {
+        font-weight: 500;
+    }
+}
+.interactions {
+    background-color: #f0f0f0;
+    justify-content: space-between;
+    padding: 3rem;
+    gap: 3rem;
+    overflow-x: hidden;
+}
+.interaction {
+    background-color: white;
+    border-radius: 1rem;
+    flex-grow: 1;
+    box-shadow: 0 0 2rem 0 rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 0 2rem 2rem 2rem;
+    *:not(h1) {
+        margin: 0;
+    }
+    h1 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+form {
+    flex-wrap: wrap;
+}
+.dropdowns, .text-inputs {
+    flex: 0 0 50%;
+}
+.submit {
+    flex: 0 0 100%;
+}
+
+
+
+
+.collection {
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 3rem;
+}
+.sock {
+    background-color: #f0f0f0;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    align-content: center;
+}
+
+
+
+/*--------------------------------------------------------sock css image*/
+.XS {
+    scale: 0.6;
+}
+.S {
+    scale: 0.7;
+}
+.M {
+    scale: 0.8;
+}
+.L {
+    scale: 0.90;
+}
+.XL {
+    scale: 1;
+}
+.blue {
+    .cuff, .heel {
+        background-color: dodgerblue;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                dodgerblue 50%,
+                dodgerblue
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: lightblue;
+    }
+}
+.red {
+    .cuff, .heel {
+        background-color: darkred;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                darkred 50%,
+                darkred
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: #ffc8c8;
+    }
+}
+.green {
+    .cuff, .heel {
+        background-color: darkgreen;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                darkgreen 50%,
+                darkgreen
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: darkseagreen;
+    }
+}
+.yellow {
+    .cuff, .heel {
+        background-color: orange;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                orange 50%,
+                orange
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: #ffffc2;
+    }
+}
+.purple {
+    .cuff, .heel {
+        background-color: rebeccapurple;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                rebeccapurple 50%,
+                rebeccapurple
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: #ffbdff;
+    }
+}
+.white {
+    .cuff, .heel {
+        background-color: darkgrey;
+    }
+    .toe {
+        background: repeating-linear-gradient(
+                transparent,
+                transparent 50%,
+                darkgrey 50%,
+                darkgrey
+        )
+    }
+    .sock-ankle, .sock-foot {
+        background-color: #fafafa;
+    }
+}
+
+
+
+
+.sock-BG {
+    height: 390px;
+    width: 300px;
+    position: relative;
+    background-color: #f0f0f0;
+    justify-content: center;
+    align-items: start;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
+}
+.sock-container {
+    height: 280px;
+    width: 280px;
+    position: relative;
+    background-color: #f0f0f0;
+}
+.sock-ankle {
+    position: absolute;
+    height: 70%;
+    width: 40%;
+    left: 20%;
+    border-radius: 0 0 0 40%;
+    z-index: 1;
+}
+.sock-ankle {
+    -webkit-clip-path: polygon(100% 75%, 25% 100%, 100% 100%, 100% 0, 0 0);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 25% 100%, 0% 99%);
+
+}
+.cuff {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+}
+.heel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 0 40%;
+}
+.heel {
+    clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0% 100%);
+}
+.sock-foot {
+    position: absolute;
+    border-top: none;
+    height: 50%;
+    width: 40%;
+    transform-origin: top left;
+    transform: rotate(-45deg);
+    top: 60%;
+    left: 22%;
+    border-radius: 20% 0 0 0;
+}
+.toe {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    bottom: -30%;
+    border-radius: 50%;
+);
+}
+/*-----------------------------------------------------------------sock hover description box*/
+.description {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: grey;
+    transition: all 0.5s;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 30%;
+    overflow-y: hidden;
+    bottom: 0;
+    h3, .description-container {
+        height: 2rem;
+        padding: 0;
+    }
+    .description-container {
+        position: relative;
+        overflow-y: hidden;
+        transition: all 0.5s;
+    }
+    h3 {
+        font-size: 2rem;
+        margin: 1rem;
+    }
+    p {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+}
+.cover{
+    position: absolute;
+    height: 2rem;
+    width: 4rem;
+    top: 0;
+    right: 0;
+    background-color: gray;
+    text-align: start;
+    transition: all 0.75s;
+}
+.description:hover {
+    height: 100%;
+    .description-container {
+        height: 100%;
+    }
+    .cover {
+        background-color: transparent;
+        color: transparent;
+        transition: all 0s;
+    }
+}
+
