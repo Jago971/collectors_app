@@ -81,25 +81,24 @@ function insertIntoDatabase() {
     if ($_POST) {
         $db = connectDB();
         $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description)");
-        //$query = $db->prepare("INSERT INTO `socks` (`size`, `pattern`, `color`) VALUES (:size, :pattern, :color)");
-        $result = $query->execute([
+        $query->execute([
             'name' => $_POST['name'],
             'size' => getRelatedNumberForDropdownOption('size', $_POST['size']),
             'pattern' => getRelatedNumberForDropdownOption('pattern', $_POST['pattern']),
             'color' => getRelatedNumberForDropdownOption('color', $_POST['color']),
-            'description' => $_POST['description']
+            'description' => $_POST['description'] ?? ''
         ]);
     }
 }
 
 function getRelatedNumberForDropdownOption($stat, $option) {
     $db = connectDB();
-    $query = $db->prepare("SELECT `socks`.`{$stat}` FROM `socks` JOIN `{$stat}s` ON `socks`.`{$stat}` = `{$stat}s`.`id` WHERE `{$stat}s`.`{$stat}` = '{$option}';");
+    $query = $db->prepare("SELECT `{$stat}s`.`id` FROM `{$stat}s` WHERE `{$stat}s`.`{$stat}` = '{$option}';");
     $result = $query->execute();
     if ($result) {
         $num = $query->fetchAll();
     } else {
         echo 'error';
     }
-    return $num[0][$stat];
+    return $num[0]['id'];
 }
