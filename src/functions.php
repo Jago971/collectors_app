@@ -21,11 +21,11 @@ function createSockDiv(array $socksArr): string {
         $socksStr .=
             "<div class=\"sock-BG flex\">
                 <div class=\"sock-container {$sock['size']} {$sock['color']}\">
-                      <div class=\"sock-ankle\">
+                      <div class=\"sock-ankle {$sock['pattern']}\">
                             <div class=\"cuff detail\"></div>
                             <div class=\"heel\"></div>
                       </div>
-                      <div class=\"sock-foot\">
+                      <div class=\"sock-foot {$sock['pattern']}\">
                             <div class=\"toe\"></div>
                       </div>
                 </div>
