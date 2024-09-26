@@ -4,8 +4,29 @@ require_once 'src/functions.php';
 $db = connectDB();
 
 if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) && isset($_POST['color'])) {
-    insertIntoDatabase($db);
+    $name = htmlspecialchars($_POST['name']);
+    $description = htmlspecialchars($_POST['description']);
+    $size = filter_var($_POST['size'], FILTER_VALIDATE_INT);
+    $pattern = filter_var($_POST['pattern'], FILTER_VALIDATE_INT);
+    $color = filter_var($_POST['color'], FILTER_VALIDATE_INT);
+    if ($name && $size && $pattern && $color) {
+        $data = [
+          'name' => $name,
+            'description' => $description,
+            'size' => $size,
+            'pattern' => $pattern,
+            'color' => $color,
+        ];
+        insertIntoDatabase($data, $db);
+    } else {
+        echo 'not working';
+    }
 }
+//YOU DIDN'T SEE ANYTHING HERE
+
+//if (isset($_POST['sock'])) {
+//    deleteFromDatabase($db);
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +74,19 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
             </div>
         </form>
     </div>
+<!--    <div class="interaction">-->
+<!--        <div class="delete">-->
+<!--            <h1>REMOVE SOCK</h1>-->
+<!--            <form method="post">-->
+<!--                <label for="socks">Sock:</label>-->
+<!--                --><?php
+//                echo createDropdown('sock', getSockNames($db));
+//                ?>
+<!--                <input class="submit" type="submit">-->
+<!--            </form>-->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
 </div>
 <div class="collection flex">
     <?php

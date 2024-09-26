@@ -399,3 +399,7 @@ form {
     }
 }
 
+/*more interactions*/
+.delete {
+    border: solid 1px;
+}

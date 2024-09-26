@@ -78,6 +78,15 @@ function getPatterns(PDO $db): array {
         throw new Exception('error');
     }
 }
+function getSockNames(PDO $db): array {
+    $query = $db->prepare("SELECT `name` FROM `socks`");
+    $result = $query->execute();
+    if ($result) {
+        return $query->fetchAll();
+    } else {
+        throw new Exception('error');
+    }
+}
 
 
 function dropDownOptions(array $rowsArr): string {
@@ -95,13 +104,22 @@ function createDropdown(string $name, $getTableCallback) : string {
     return $start . $options . $end;
 }
 
-function insertIntoDatabase(PDO $db) {
-        $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description)");
+function insertIntoDatabase(array $sanitizedData, PDO $db) {
+        $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description);");
         $query->execute([
-            'name' => $_POST['name'],
-            'size' => $_POST['size'],
-            'pattern' => $_POST['pattern'],
-            'color' => $_POST['color'],
-            'description' => $_POST['description'] ?? ''
+            'name' => $sanitizedData['name'],
+            'size' => $sanitizedData['size'],
+            'pattern' => $sanitizedData['pattern'],
+            'color' => $sanitizedData['color'],
+            'description' => $sanitizedData['description'] ?? ''
         ]);
 }
+
+//YOU DIDN'T SEE ANYTHING HERE
+
+//function deleteFromDatabase(PDO $db) {
+//    $query = $db->prepare("DELETE FROM `socks` WHERE `name` = :chosenSock");
+//    $query->execute([
+//        'chosenSock' => $_POST['sock']
+//    ]);
+//}
