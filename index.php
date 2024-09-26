@@ -1,6 +1,11 @@
 <?php
 require_once 'src/functions.php';
-insertIntoDatabase();
+
+$db = connectDB();
+
+if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) && isset($_POST['color'])) {
+    insertIntoDatabase($db);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,15 +35,15 @@ insertIntoDatabase();
                 <input name="name" id="name" type="text" required="required">
                 <label for="size">Size:</label>
                 <?php
-                echo createDropdown('size');
+                echo createDropdown('size', getSizes($db));
                 ?>
                 <label for="pattern">Pattern:</label>
                 <?php
-                echo createDropdown('pattern');
+                echo createDropdown('pattern', getPatterns($db));
                 ?>
                 <label for="color">Color:</label>
                 <?php
-                echo createDropdown('color');
+                echo createDropdown('color', getColors($db));
                 ?>
             </div>
             <div class="description-input flex">
@@ -51,7 +56,7 @@ insertIntoDatabase();
 </div>
 <div class="collection flex">
     <?php
-    echo displaySocksCollection(connectDB());
+    echo displaySocksCollection($db);
     ?>
 </div>
 </body>

@@ -7,11 +7,20 @@ class dropDownOptionsTest extends TestCase {
     public function testDropDownOptionsSuccessTest(): void
     {
         $input = [
-            [1 => 'XS'],
-            [2 => 'S'],
-            [3 => 'M']
+            [
+                'id' => '1',
+                'name' => 'XS'
+            ],
+            [
+                'id' => '2',
+                'name' => 'S'
+            ],
+            [
+                'id' => '3',
+                'name' => 'M'
+            ]
         ];
-        $expected = "<option value=\"XS\">XS</option><option value=\"S\">S</option><option value=\"M\">M</option>";
+        $expected = "<option value=\"1\">XS</option><option value=\"2\">S</option><option value=\"3\">M</option>";
         $actual = dropDownOptions($input);
         $this->assertEquals($expected, $actual);
     }
@@ -26,8 +35,7 @@ class dropDownOptionsTest extends TestCase {
     public function testDropDownOptionsWrongArrayFormat(): void
     {
         $input = ['an', 'indexed', 'array'];
-        $expected = '';
-        $actual = dropDownOptions($input);
-        $this->assertEquals($expected, $actual);
+        $this->expectException(TypeError::class);
+        dropDownOptions($input);
     }
 }

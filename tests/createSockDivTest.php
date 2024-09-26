@@ -8,52 +8,46 @@ class createSockDivTest extends TestCase {
     {
         $input = [
             [
-                'name' => 'name1',
-                'size' => 'size1',
-                'pattern' => 'pattern1',
-                'color' => 'color1',
-                'description' => 'description1'
-            ],
-            [
-                'name' => 'name2',
-                'size' => 'size2',
-                'pattern' => 'pattern2',
-                'color' => 'color2',
-                'description' => 'description2'
+                'size' => 1,
+                'name' => 'name',
+                'pattern' => 1,
+                'color' => 1,
+                'description' => 'description'
             ]
         ];
+        $sizes = [
+            [
+                'id'=>1,
+                'name'=>'XS'
+            ]
+        ];
+        $patterns = [
+            ['id'=>1,
+            'name'=>'zigzag']
+        ];
+        $colors = [
+            ['id'=>1,
+            'name'=>'yellow']
+        ];
 
-        $expected = "<div class=\"sock-BG flex\">
-                <div class=\"sock-container size1 color1\">
-                      <div class=\"sock-ankle\">
-                            <div class=\"cuff detail\"></div>
-                            <div class=\"heel\"></div>
-                      </div>
-                      <div class=\"sock-foot\">
-                            <div class=\"toe\"></div>
-                      </div>
-                </div>
-                <div class=\"description flex\">
-                    <h3>name1</h3>
-                    <div class=\"description-container\"><p>description1</p><p class=\"cover\">...</p></div>
-                </div>
-            </div><div class=\"sock-BG flex\">
-                <div class=\"sock-container size2 color2\">
-                      <div class=\"sock-ankle\">
-                            <div class=\"cuff detail\"></div>
-                            <div class=\"heel\"></div>
-                      </div>
-                      <div class=\"sock-foot\">
-                            <div class=\"toe\"></div>
-                      </div>
-                </div>
-                <div class=\"description flex\">
-                    <h3>name2</h3>
-                    <div class=\"description-container\"><p>description2</p><p class=\"cover\">...</p></div>
-                </div>
-            </div>";
+        $expected = '';
+        $expected .= "<div class=\"sock-BG flex\">";
+        $expected .= "<div class=\"sock-container XS yellow\">";
+        $expected .= "<div class=\"sock-ankle zigzag\">";
+        $expected .= "<div class=\"cuff detail\"></div>";
+        $expected .= "<div class=\"heel\"></div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"sock-foot zigzag\">";
+        $expected .= "<div class=\"toe\"></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"description flex\">";
+        $expected .= "<h3>name</h3>";
+        $expected .= "<div class=\"description-container\"><p>description</p><p class=\"cover\">...</p></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
 
-        $actual = createSockDiv($input);
+        $actual = createSockDiv($input, $sizes, $patterns, $colors);
         $this->assertEquals($expected, $actual);
     }
 

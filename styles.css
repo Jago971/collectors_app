@@ -220,7 +220,8 @@ form {
 
 
 .sock-BG {
-    height: 390px;
+    padding: 0.5rem;
+    height: 420px;
     width: 250px;
     position: relative;
     background-color: #f0f0f0;
@@ -278,7 +279,7 @@ form {
 
 .sock-ankle {
     -webkit-clip-path: polygon(100% 75%, 25% 100%, 100% 100%, 100% 0, 0 0);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 25% 100%, 0% 99%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 25% 100%, 0% 99%);
 
 }
 .cuff {
@@ -299,11 +300,11 @@ form {
     position: absolute;
     border-top: none;
     height: 50%;
-    width: 40%;
+    width: 42%;
     transform-origin: top left;
     transform: rotate(-45deg);
     top: 60%;
-    left: 22%;
+    left: 21%;
     border-radius: 20% 0 0 0;
 }
 .toe {
