@@ -24,9 +24,13 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
 }
 //YOU DIDN'T SEE ANYTHING HERE
 
-//if (isset($_POST['sock'])) {
-//    deleteFromDatabase($db);
-//}
+if (isset($_POST['deletesock'])) {
+    $sock = filter_var($_POST['deletesock'], FILTER_VALIDATE_INT);
+    if ($sock) {
+        $data = ['id' => $sock];
+        deleteFromDatabase($data, $db);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,19 +78,35 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
             </div>
         </form>
     </div>
-<!--    <div class="interaction">-->
-<!--        <div class="delete">-->
-<!--            <h1>REMOVE SOCK</h1>-->
-<!--            <form method="post">-->
-<!--                <label for="socks">Sock:</label>-->
-<!--                --><?php
-//                echo createDropdown('sock', getSockNames($db));
-//                ?>
-<!--                <input class="submit" type="submit">-->
-<!--            </form>-->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
+    <div class="interaction">
+        <div class="SEARCH">
+            <h1>SEARCH SOCK</h1>
+            <form method="post">
+                <label for="searchsock"></label>
+                <?php
+                echo createDropdown('searchsock', getSockNames($db));
+                ?>
+                <input class="submit" type="submit">
+            </form>
+            <div>
+                <?php
+                if (isset($_POST['searchsock'])) {
+                    $sock = filter_var($_POST['searchsock'], FILTER_VALIDATE_INT);
+                    if ($sock) {
+                        $data = ['id' => $sock];
+                        $sock = searchSock($data, $db);
+                        echo "<p>Name: {$sock['name']}</p>";
+                    }
+                }
+                ?>
+            </div>
+            <form method="post">
+                <label for="deletesock">DELETE SOCK</label>
+                <input class="submit" type="submit">
+            </form>
+        </div>
+
+    </div>
 </div>
 <div class="collection flex">
     <?php

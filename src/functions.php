@@ -69,6 +69,7 @@ function getColors(PDO $db): array {
         throw new Exception('error');
     }
 }
+
 function getPatterns(PDO $db): array {
     $query = $db->prepare("SELECT `id`, `name` FROM `patterns`");
     $result = $query->execute();
@@ -78,8 +79,9 @@ function getPatterns(PDO $db): array {
         throw new Exception('error');
     }
 }
+
 function getSockNames(PDO $db): array {
-    $query = $db->prepare("SELECT `name` FROM `socks`");
+    $query = $db->prepare("SELECT `id`, `name` FROM `socks`");
     $result = $query->execute();
     if ($result) {
         return $query->fetchAll();
@@ -87,7 +89,6 @@ function getSockNames(PDO $db): array {
         throw new Exception('error');
     }
 }
-
 
 function dropDownOptions(array $rowsArr): string {
     $options= '';
@@ -115,11 +116,32 @@ function insertIntoDatabase(array $sanitizedData, PDO $db) {
         ]);
 }
 
-//YOU DIDN'T SEE ANYTHING HERE
+function deleteFromDatabase(array $sanitizedData, PDO $db) {
+    $query = $db->prepare("DELETE FROM `socks` WHERE `id` = :chosenSock");
+    $query->execute([
+        'chosenSock' => $sanitizedData['id']
+    ]);
+}
 
-//function deleteFromDatabase(PDO $db) {
-//    $query = $db->prepare("DELETE FROM `socks` WHERE `name` = :chosenSock");
-//    $query->execute([
-//        'chosenSock' => $_POST['sock']
-//    ]);
-//}
+function searchSock(array $sanitizedData, PDO $db): array {
+    $query = $db->prepare("SELECT `sizes`.`name`, `patterns`.`name`, `colors`.`name`, `socks`.`name`, `socks`.`description` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id` WHERE `socks`.`id` = :chosenSock;");
+    $result = $query->execute([
+        'chosenSock' => $sanitizedData['id']
+    ]);
+    if ($result) {
+        $sockArr = $query->fetchAll();
+    } else {
+        throw new Exception('error');
+    }
+    return $sockArr;
+}
+
+function displaySearchedSock($sock) {
+    $message = '';
+    foreach ($sock as $stat) {
+        foreach ($stat as $key => $value) {
+            $message .= "<p>{$key}: {$value}</p>";
+        }
+    }
+    return $message;
+}

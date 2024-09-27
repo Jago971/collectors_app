@@ -1,14 +1,17 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     padding: 0;
     margin: 0;
     font-family: 'ubuntu';
 }
+
 .flex {
     display: flex;
 }
+
 .title {
     justify-content: center;
     position: relative;
@@ -33,12 +36,14 @@ body {
         font-weight: 500;
     }
 }
+
 @media screen and (max-width: 510px) {
     .title > .flex:last-of-type {
         margin-top: 2rem;
         height: fit-content;
     }
 }
+
 .interactions {
     background-color: #f0f0f0;
     justify-content: space-between;
@@ -47,6 +52,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .interaction {
     max-width: 500px;
     background-color: white;
@@ -67,9 +73,11 @@ body {
 .add, .small-inputs, .description-input {
     flex-direction: column;
 }
+
 .small-inputs, .description-input {
     flex: 1;
 }
+
 form {
     justify-content: center;
     gap: 0.5rem;
@@ -77,10 +85,12 @@ form {
         margin-top: 0.5rem
     }
 }
+
 .description-input > textarea {
     flex: 1;
     margin-bottom: 0.5rem;
 }
+
 @media screen and (max-width: 500px) {
     form {
         flex-direction: column;
@@ -93,6 +103,7 @@ form {
     padding: 3rem;
     justify-content: center;
 }
+
 .sock {
     background-color: #f0f0f0;
     height: 200px;
@@ -101,24 +112,26 @@ form {
     align-content: center;
 }
 
-
-
-/*--------------------------------------------------------sock css image*/
 .XS {
     scale: 0.6;
 }
+
 .S {
     scale: 0.7;
 }
+
 .M {
     scale: 0.8;
 }
+
 .L {
     scale: 0.90;
 }
+
 .XL {
     scale: 1;
 }
+
 .blue {
     .cuff, .heel {
         background-color: dodgerblue;
@@ -135,6 +148,7 @@ form {
         background-color: lightblue;
     }
 }
+
 .red {
     .cuff, .heel {
         background-color: darkred;
@@ -151,6 +165,7 @@ form {
         background-color: #ffc8c8;
     }
 }
+
 .green {
     .cuff, .heel {
         background-color: darkgreen;
@@ -167,6 +182,7 @@ form {
         background-color: darkseagreen;
     }
 }
+
 .yellow {
     .cuff, .heel {
         background-color: orange;
@@ -183,6 +199,7 @@ form {
         background-color: #ffffc2;
     }
 }
+
 .purple {
     .cuff, .heel {
         background-color: rebeccapurple;
@@ -199,6 +216,7 @@ form {
         background-color: #ffbdff;
     }
 }
+
 .white {
     .cuff, .heel {
         background-color: darkgrey;
@@ -216,9 +234,6 @@ form {
     }
 }
 
-
-
-
 .sock-BG {
     padding: 0.5rem;
     height: 420px;
@@ -231,15 +246,18 @@ form {
     box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.5);
     transition: scale 0.25s;
 }
+
 .sock-BG:hover {
     scale: 1.05;
 }
+
 .sock-container {
     height: 280px;
     width: 250px;
     position: relative;
     background-color: #f0f0f0;
 }
+
 .sock-ankle {
     position: absolute;
     height: 70%;
@@ -249,7 +267,6 @@ form {
     z-index: 1;
 }
 
-/*sock pattern classes*/
 .stripes {
     background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(1) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240, 6.70%, 17.60%, 0)'/><path d='M0 10h20z'   stroke-width='4' stroke='hsla(0, 0%, 0%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
 }
@@ -272,30 +289,29 @@ form {
     background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='40' height='22' patternTransform='scale(1) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240, 6.70%, 17.60%, 0)'/><path d='M-4.798 13.573C-3.149 12.533-1.446 11.306 0 10c2.812-2.758 6.18-4.974 10-5 4.183.336 7.193 2.456 10 5 2.86 2.687 6.216 4.952 10 5 4.185-.315 7.35-2.48 10-5 1.452-1.386 3.107-3.085 4.793-4.176'  stroke-width='2.5' stroke='hsla(0, 0%, 0%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
 }
 
-
-
-
-
-
 .sock-ankle {
     -webkit-clip-path: polygon(100% 75%, 25% 100%, 100% 100%, 100% 0, 0 0);
     clip-path: polygon(0% 0%, 100% 0%, 100% 62%, 25% 100%, 0% 99%);
 
 }
+
 .cuff {
     position: absolute;
     width: 100%;
     height: 20%;
 }
+
 .heel {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 0 0 0 40%;
 }
+
 .heel {
     clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0% 100%);
 }
+
 .sock-foot {
     position: absolute;
     border-top: none;
@@ -307,6 +323,7 @@ form {
     left: 21%;
     border-radius: 20% 0 0 0;
 }
+
 .toe {
     position: absolute;
     width: 100%;
@@ -315,7 +332,7 @@ form {
     border-radius: 50%;
 );
 }
-/*-----------------------------------------------------------------sock hover description box*/
+
 .description {
     overflow-wrap: break-word;
     padding: 0.5rem;
@@ -348,33 +365,6 @@ form {
         font-size: 1.5rem;
     }
 }
-/*@keyframes descriptionBounce {*/
-/*    0% {height: 30%}*/
-/*    90% {height: 30%}*/
-/*    92% {height: 32%}*/
-/*    94% {height: 30%}*/
-/*    96% {height: 30%}*/
-/*    98% {height: 32%}*/
-/*    100% {height: 30%}*/
-/*}*/
-/*.bounce1 {*/
-/*    animation: descriptionBounce 5s linear infinite;*/
-/*    animation-delay: 0.5s;*/
-/*}*/
-/*.bounce2 {*/
-/*    animation: descriptionBounce 5s linear infinite;*/
-/*    animation-delay: 1s;*/
-/*}*/
-/*.bounce3 {*/
-/*    animation: descriptionBounce 5s linear infinite;*/
-/*    animation-delay: 1.5s;*/
-/*}*/
-/*.bounce4 {*/
-/*    animation: descriptionBounce 5s linear infinite;*/
-/*    animation-delay: 2s;*/
-/*}*/
-
-
 
 .cover{
     position: absolute;
@@ -386,6 +376,7 @@ form {
     text-align: start;
     transition: all 0.75s;
 }
+
 .description:hover {
     height: 100%;
     animation: unset;
@@ -397,9 +388,4 @@ form {
         color: transparent;
         transition: all 0s;
     }
-}
-
-/*more interactions*/
-.delete {
-    border: solid 1px;
 }
