@@ -4,6 +4,7 @@ require_once 'src/functions.php';
 use PHPUnit\Framework\TestCase;
 
 class displaySearchedSockTest extends TestCase {
+
     public function testDisplaySearchedSockSuccessTest() :void
     {
         $array = [
@@ -82,6 +83,7 @@ class displaySearchedSockTest extends TestCase {
         $actual = displaySearchedSock($array, $int);
         $this->assertEquals($expected, $actual);
     }
+
     public function testDisplaySearchedMalformedInt() :void
     {
         $array = [
@@ -106,6 +108,7 @@ class displaySearchedSockTest extends TestCase {
         $this->expectException(TypeError::class);
         createSockDiv($array, $int);
     }
+
     public function testDisplaySearchedMalformedArray() :void
     {
         $array = 'not an array';
@@ -125,6 +128,7 @@ class displaySearchedSockTest extends TestCase {
         $this->expectException(TypeError::class);
         createSockDiv($array, $int);
     }
+
     public function testDisplaySearchedWrongArrayType() :void
     {
         $array = [1, 2, 3, 4];
