@@ -115,33 +115,3 @@ function insertIntoDatabase(array $sanitizedData, PDO $db) {
             'description' => $sanitizedData['description'] ?? ''
         ]);
 }
-
-function deleteFromDatabase(array $sanitizedData, PDO $db) {
-    $query = $db->prepare("DELETE FROM `socks` WHERE `id` = :chosenSock");
-    $query->execute([
-        'chosenSock' => $sanitizedData['id']
-    ]);
-}
-
-function searchSock(array $sanitizedData, PDO $db): array {
-    $query = $db->prepare("SELECT `sizes`.`name`, `patterns`.`name`, `colors`.`name`, `socks`.`name`, `socks`.`description` FROM `socks` JOIN `sizes` ON `socks`.`size` = `sizes`.`id` JOIN `patterns` ON `socks`.`pattern` = `patterns`.`id` JOIN `colors` ON `socks`.`color` = `colors`.`id` WHERE `socks`.`id` = :chosenSock;");
-    $result = $query->execute([
-        'chosenSock' => $sanitizedData['id']
-    ]);
-    if ($result) {
-        $sockArr = $query->fetchAll();
-    } else {
-        throw new Exception('error');
-    }
-    return $sockArr;
-}
-
-function displaySearchedSock($sock) {
-    $message = '';
-    foreach ($sock as $stat) {
-        foreach ($stat as $key => $value) {
-            $message .= "<p>{$key}: {$value}</p>";
-        }
-    }
-    return $message;
-}

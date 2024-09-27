@@ -78,35 +78,6 @@ if (isset($_POST['deletesock'])) {
             </div>
         </form>
     </div>
-    <div class="interaction">
-        <div class="SEARCH">
-            <h1>SEARCH SOCK</h1>
-            <form method="post">
-                <label for="searchsock"></label>
-                <?php
-                echo createDropdown('searchsock', getSockNames($db));
-                ?>
-                <input class="submit" type="submit">
-            </form>
-            <div>
-                <?php
-                if (isset($_POST['searchsock'])) {
-                    $sock = filter_var($_POST['searchsock'], FILTER_VALIDATE_INT);
-                    if ($sock) {
-                        $data = ['id' => $sock];
-                        $sock = searchSock($data, $db);
-                        echo "<p>Name: {$sock['name']}</p>";
-                    }
-                }
-                ?>
-            </div>
-            <form method="post">
-                <label for="deletesock">DELETE SOCK</label>
-                <input class="submit" type="submit">
-            </form>
-        </div>
-
-    </div>
 </div>
 <div class="collection flex">
     <?php
