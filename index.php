@@ -81,19 +81,19 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
             </form>
             <div>
                 <?php
+                if (isset($_POST['deletesock'])) {
+                    $sock = filter_var($_POST['deletesock'], FILTER_VALIDATE_INT);
+                    if ($sock) {
+                        $data = ['id' => $sock];
+                        deleteFromDatabase($data, $db);
+                    }
+                }
                 if (isset($_POST['searchsock'])) {
                     $sock = filter_var($_POST['searchsock'], FILTER_VALIDATE_INT);
                     if ($sock) {
                         $data = ['id' => $sock];
                         $sock = searchSock($data, $db);
                         echo displaySearchedSock($sock, $data['id']);
-                    }
-                }
-                if (isset($_POST['deletesock'])) {
-                    $sock = filter_var($_POST['deletesock'], FILTER_VALIDATE_INT);
-                    if ($sock) {
-                        $data = ['id' => $sock];
-                        deleteFromDatabase($data, $db);
                     }
                 }
                 ?>
