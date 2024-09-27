@@ -15,6 +15,7 @@ function createSockDiv(array $socksArr,array $sizes,array $patterns,array $color
         $size = $sizes[$sock['size'] - 1]['name'];
         $pattern = $patterns[$sock['pattern'] - 1]['name'];
         $color = $colors[$sock['color'] - 1]['name'];
+        $description = $sock['description'] ?? '';
 
         $socksStr .= "<div class=\"sock-BG flex\">";
         $socksStr .= "<div class=\"sock-container {$size} {$color}\">";
@@ -28,7 +29,7 @@ function createSockDiv(array $socksArr,array $sizes,array $patterns,array $color
         $socksStr .= "</div>";
         $socksStr .= "<div class=\"description flex\">";
         $socksStr .= "<h3>{$sock['name']}</h3>";
-        $socksStr .= "<div class=\"description-container\"><p>{$sock['description']}</p><p class=\"cover\">...</p></div>";
+        $socksStr .= "<div class=\"description-container\"><p>{$description}</p><p class=\"cover\">...</p></div>";
         $socksStr .= "</div>";
         $socksStr .= "</div>";
     }
