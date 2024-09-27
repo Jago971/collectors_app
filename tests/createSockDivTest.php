@@ -22,12 +22,16 @@ class createSockDivTest extends TestCase {
             ]
         ];
         $patterns = [
-            ['id'=>1,
-            'name'=>'zigzag']
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
         ];
         $colors = [
-            ['id'=>1,
-            'name'=>'yellow']
+            [
+                'id'=>1,
+                'name'=>'yellow'
+            ]
         ];
 
         $expected = '';
@@ -72,7 +76,8 @@ class createSockDivTest extends TestCase {
                 'size' => 1,
                 'name' => 'name',
                 'pattern' => 1,
-                'color' => 1
+                'color' => 1,
+                'description' => ""
             ]
         ];
         $sizes = [
@@ -82,12 +87,16 @@ class createSockDivTest extends TestCase {
             ]
         ];
         $patterns = [
-            ['id'=>1,
-                'name'=>'zigzag']
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
         ];
         $colors = [
-            ['id'=>1,
-                'name'=>'yellow']
+            [
+                'id'=>1,
+                'name'=>'yellow'
+            ]
         ];
 
         $expected = '';
@@ -110,6 +119,7 @@ class createSockDivTest extends TestCase {
         $actual = createSockDiv($input, $sizes, $patterns, $colors);
         $this->assertEquals($expected, $actual);
     }
+
     public function testCreateSockDivMissingField(): void
     {
         $input = [
@@ -128,8 +138,10 @@ class createSockDivTest extends TestCase {
             ]
         ];
         $patterns = [
-            ['id'=>1,
-                'name'=>'zigzag']
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
         ];
 
         $expected = '';
@@ -152,6 +164,7 @@ class createSockDivTest extends TestCase {
         $this->expectException(ArgumentCountError::class);
         createSockDiv($input, $sizes, $patterns);
     }
+
     public function testCreateSockDivFieldWrongDataType(): void
     {
         $input = [

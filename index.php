@@ -22,15 +22,6 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
         echo 'not working';
     }
 }
-//YOU DIDN'T SEE ANYTHING HERE
-
-if (isset($_POST['deletesock'])) {
-    $sock = filter_var($_POST['deletesock'], FILTER_VALIDATE_INT);
-    if ($sock) {
-        $data = ['id' => $sock];
-        deleteFromDatabase($data, $db);
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

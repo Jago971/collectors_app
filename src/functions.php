@@ -50,7 +50,6 @@ function displaySocksCollection(PDO $db): string {
     return createSockDiv($socksArr, $sizes, $patterns, $colors);
 }
 
-
 function getSizes(PDO $db): array {
     $query = $db->prepare("SELECT `id`, `name` FROM `sizes`");
     $result = $query->execute();
@@ -60,6 +59,7 @@ function getSizes(PDO $db): array {
         throw new Exception('error');
     }
 }
+
 function getColors(PDO $db): array {
     $query = $db->prepare("SELECT `id`, `name` FROM `colors`");
     $result = $query->execute();
@@ -106,12 +106,12 @@ function createDropdown(string $name, $getTableCallback) : string {
 }
 
 function insertIntoDatabase(array $sanitizedData, PDO $db) {
-        $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description);");
-        $query->execute([
-            'name' => $sanitizedData['name'],
-            'size' => $sanitizedData['size'],
-            'pattern' => $sanitizedData['pattern'],
-            'color' => $sanitizedData['color'],
-            'description' => $sanitizedData['description'] ?? ''
-        ]);
+    $query = $db->prepare("INSERT INTO `socks` (`name`, `size`, `pattern`, `color`, `description`) VALUES (:name, :size, :pattern, :color, :description);");
+    $query->execute([
+        'name' => $sanitizedData['name'],
+        'size' => $sanitizedData['size'],
+        'pattern' => $sanitizedData['pattern'],
+        'color' => $sanitizedData['color'],
+        'description' => $sanitizedData['description'] ?? ''
+    ]);
 }
