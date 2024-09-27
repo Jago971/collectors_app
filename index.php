@@ -1,5 +1,27 @@
 <?php
 require_once 'src/functions.php';
+
+$db = connectDB();
+
+if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) && isset($_POST['color'])) {
+    $name = htmlspecialchars($_POST['name']);
+    $description = htmlspecialchars($_POST['description']);
+    $size = filter_var($_POST['size'], FILTER_VALIDATE_INT);
+    $pattern = filter_var($_POST['pattern'], FILTER_VALIDATE_INT);
+    $color = filter_var($_POST['color'], FILTER_VALIDATE_INT);
+    if ($name && $size && $pattern && $color) {
+        $data = [
+          'name' => $name,
+            'description' => $description,
+            'size' => $size,
+            'pattern' => $pattern,
+            'color' => $color,
+        ];
+        insertIntoDatabase($data, $db);
+    } else {
+        echo 'not working';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +42,38 @@ require_once 'src/functions.php';
     <div class="flex"><h1>ODD SOCKS COLLECTION</h1></div>
     <div class="flex"><h3>a place to keep a collection of your odd socks</h3></div>
 </div>
-<div class="container flex">
-    <form method="get">
-    </form>
-    <div class="collection flex">
-        <?php
-        echo displaySocksCollection(connectDB());
-        ?>
+<div class="interactions flex">
+    <div class="interaction add flex">
+        <h1>ADD NEW SOCK</h1>
+        <form method="post" class="flex">
+            <div class="small-inputs flex">
+                <label for="name">Name:</label>
+                <input name="name" id="name" type="text" required="required">
+                <label for="size">Size:</label>
+                <?php
+                echo createDropdown('size', getSizes($db));
+                ?>
+                <label for="pattern">Pattern:</label>
+                <?php
+                echo createDropdown('pattern', getPatterns($db));
+                ?>
+                <label for="color">Color:</label>
+                <?php
+                echo createDropdown('color', getColors($db));
+                ?>
+            </div>
+            <div class="description-input flex">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description"></textarea>
+                <input class="submit" type="submit">
+            </div>
+        </form>
     </div>
+</div>
+<div class="collection flex">
+    <?php
+    echo displaySocksCollection($db);
+    ?>
 </div>
 </body>
 </html>

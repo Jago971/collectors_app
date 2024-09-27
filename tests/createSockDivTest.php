@@ -6,74 +6,206 @@ use PHPUnit\Framework\TestCase;
 class createSockDivTest extends TestCase {
     public function testCreateSockDivSuccessTest(): void
     {
-        // test inputs
         $input = [
             [
-                'name' => 'name1',
-                'size' => 'size1',
-                'pattern' => 'pattern1',
-                'color' => 'color1',
-                'description' => 'description1'
-            ],
+                'size' => 1,
+                'name' => 'name',
+                'pattern' => 1,
+                'color' => 1,
+                'description' => 'description'
+            ]
+        ];
+        $sizes = [
             [
-                'name' => 'name2',
-                'size' => 'size2',
-                'pattern' => 'pattern2',
-                'color' => 'color2',
-                'description' => 'description2'
+                'id'=>1,
+                'name'=>'XS'
+            ]
+        ];
+        $patterns = [
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
+        ];
+        $colors = [
+            [
+                'id'=>1,
+                'name'=>'yellow'
             ]
         ];
 
-        $expected = "<div class=\"sock-BG flex\">
-                <div class=\"sock-container size1 color1\">
-                      <div class=\"sock-ankle\">
-                            <div class=\"cuff detail\"></div>
-                            <div class=\"heel\"></div>
-                      </div>
-                      <div class=\"sock-foot\">
-                            <div class=\"toe\"></div>
-                      </div>
-                </div>
-                <div class=\"description flex\">
-                    <h3>name1</h3>
-                    <div class=\"description-container\"><p>description1</p><p class=\"cover\">...</p></div>
-                </div>
-            </div><div class=\"sock-BG flex\">
-                <div class=\"sock-container size2 color2\">
-                      <div class=\"sock-ankle\">
-                            <div class=\"cuff detail\"></div>
-                            <div class=\"heel\"></div>
-                      </div>
-                      <div class=\"sock-foot\">
-                            <div class=\"toe\"></div>
-                      </div>
-                </div>
-                <div class=\"description flex\">
-                    <h3>name2</h3>
-                    <div class=\"description-container\"><p>description2</p><p class=\"cover\">...</p></div>
-                </div>
-            </div>";
+        $expected = '';
+        $expected .= "<div class=\"sock-BG flex\">";
+        $expected .= "<div class=\"sock-container XS yellow\">";
+        $expected .= "<div class=\"sock-ankle zigzag\">";
+        $expected .= "<div class=\"cuff detail\"></div>";
+        $expected .= "<div class=\"heel\"></div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"sock-foot zigzag\">";
+        $expected .= "<div class=\"toe\"></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"description flex\">";
+        $expected .= "<h3>name</h3>";
+        $expected .= "<div class=\"description-container\"><p>description</p><p class=\"cover\">...</p></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
 
-        $actual = createSockDiv($input);
-
+        $actual = createSockDiv($input, $sizes, $patterns, $colors);
         $this->assertEquals($expected, $actual);
     }
 
     public function testCreateSockDivMalformedInputsTest(): void
     {
         $inputA = 'Not an array';
-
         $this->expectException(TypeError::class);
-
         createSockDiv($inputA);
     }
 
     public function testCreateSockDivWrongArrayFormatTest(): void
     {
         $input = ['Not', 'an', 'array'];
+        $this->expectException(TypeError::class);
+        createSockDiv($input);
+    }
+
+    public function testCreateSockDivMissingDescription(): void
+    {
+        $input = [
+            [
+                'size' => 1,
+                'name' => 'name',
+                'pattern' => 1,
+                'color' => 1,
+                'description' => ""
+            ]
+        ];
+        $sizes = [
+            [
+                'id'=>1,
+                'name'=>'XS'
+            ]
+        ];
+        $patterns = [
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
+        ];
+        $colors = [
+            [
+                'id'=>1,
+                'name'=>'yellow'
+            ]
+        ];
+
+        $expected = '';
+        $expected .= "<div class=\"sock-BG flex\">";
+        $expected .= "<div class=\"sock-container XS yellow\">";
+        $expected .= "<div class=\"sock-ankle zigzag\">";
+        $expected .= "<div class=\"cuff detail\"></div>";
+        $expected .= "<div class=\"heel\"></div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"sock-foot zigzag\">";
+        $expected .= "<div class=\"toe\"></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"description flex\">";
+        $expected .= "<h3>name</h3>";
+        $expected .= "<div class=\"description-container\"><p></p><p class=\"cover\">...</p></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+
+        $actual = createSockDiv($input, $sizes, $patterns, $colors);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testCreateSockDivMissingField(): void
+    {
+        $input = [
+            [
+                'size' => 1,
+                'name' => 'name',
+                'pattern' => 1,
+                'color' => 1,
+                'description' => 'description'
+            ]
+        ];
+        $sizes = [
+            [
+                'id'=>1,
+                'name'=>'XS'
+            ]
+        ];
+        $patterns = [
+            [
+                'id'=>1,
+                'name'=>'zigzag'
+            ]
+        ];
+
+        $expected = '';
+        $expected .= "<div class=\"sock-BG flex\">";
+        $expected .= "<div class=\"sock-container XS yellow\">";
+        $expected .= "<div class=\"sock-ankle zigzag\">";
+        $expected .= "<div class=\"cuff detail\"></div>";
+        $expected .= "<div class=\"heel\"></div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"sock-foot zigzag\">";
+        $expected .= "<div class=\"toe\"></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"description flex\">";
+        $expected .= "<h3>name</h3>";
+        $expected .= "<div class=\"description-container\"><p>description</p><p class=\"cover\">...</p></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+
+        $this->expectException(ArgumentCountError::class);
+        createSockDiv($input, $sizes, $patterns);
+    }
+
+    public function testCreateSockDivFieldWrongDataType(): void
+    {
+        $input = [
+            [
+                'size' => 1,
+                'name' => 'name',
+                'pattern' => 1,
+                'color' => 1,
+                'description' => 'description'
+            ]
+        ];
+        $sizes = [
+            [
+                'id'=>1,
+                'name'=>'XS'
+            ]
+        ];
+        $patterns = [
+            ['id'=>1,
+                'name'=>'zigzag']
+        ];
+        $colors = 'wrong data type';
+
+        $expected = '';
+        $expected .= "<div class=\"sock-BG flex\">";
+        $expected .= "<div class=\"sock-container XS yellow\">";
+        $expected .= "<div class=\"sock-ankle zigzag\">";
+        $expected .= "<div class=\"cuff detail\"></div>";
+        $expected .= "<div class=\"heel\"></div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"sock-foot zigzag\">";
+        $expected .= "<div class=\"toe\"></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
+        $expected .= "<div class=\"description flex\">";
+        $expected .= "<h3>name</h3>";
+        $expected .= "<div class=\"description-container\"><p>description</p><p class=\"cover\">...</p></div>";
+        $expected .= "</div>";
+        $expected .= "</div>";
 
         $this->expectException(TypeError::class);
-
-        createSockDiv($input);
+        createSockDiv($input, $sizes, $patterns, $colors);
     }
 }
