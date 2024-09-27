@@ -95,15 +95,14 @@ if (isset($_POST['deletesock'])) {
                     if ($sock) {
                         $data = ['id' => $sock];
                         $sock = searchSock($data, $db);
-                        echo displaySearchedSock($sock);
+                        echo displaySearchedSock($sock, $data);
                     }
+                }
+                if (isset($_POST['deletesock'])) {
+
                 }
                 ?>
             </div>
-            <form method="post">
-                <label for="deletesock">DELETE SOCK</label>
-                <input class="submit" type="submit">
-            </form>
         </div>
     </div>
 </div>

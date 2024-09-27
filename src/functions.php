@@ -138,8 +138,8 @@ function searchSock(array $sanitizedData, PDO $db): array {
     return $sockArr;
 }
 
-function displaySearchedSock(array $sockArr): string {
-    $message = '';
+function displaySearchedSock(array $sockArr, int $data): string {
+    $message = '<br>';
     foreach ($sockArr as $key => $value) {
         if($key == 'Description' && $value == '') {
             $message .= "<p><b>{$key}:</b> N/A</p>";
@@ -147,5 +147,10 @@ function displaySearchedSock(array $sockArr): string {
             $message .= "<p><b>{$key}:</b> {$value}</p>";
         }
     }
+    $message .= "<br><form method=\"post\">";
+    $message .= "<label for=\"deletesock\"></label>";
+    $message .= "<input value=\"\">";
+    $message .= "<input class=\"submit\" type=\"submit\" value=\"DELETE SOCK\">";
+    $message .= "</form>";
     return $message;
 }
