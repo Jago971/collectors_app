@@ -149,7 +149,7 @@ function displaySearchedSock(array $sockArr, int $data): string {
     }
     $message .= "<br><form method=\"post\">";
     $message .= "<label for=\"deletesock\"></label>";
-    $message .= "<input value=\"\">";
+    $message .= "<input name=\"deletesock\" id=\"deletesock\" value=\"$data\">";
     $message .= "<input class=\"submit\" type=\"submit\" value=\"DELETE SOCK\">";
     $message .= "</form>";
     return $message;
