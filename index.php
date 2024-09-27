@@ -75,12 +75,6 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
             <form method="post">
                 <label for="searchsock"></label>
                 <?php
-                echo createDropdown('searchsock', getSockNames($db));
-                ?>
-                <input class="submit" type="submit">
-            </form>
-            <div>
-                <?php
                 if (isset($_POST['deletesock'])) {
                     $sock = filter_var($_POST['deletesock'], FILTER_VALIDATE_INT);
                     if ($sock) {
@@ -88,6 +82,13 @@ if (isset($_POST['name']) && isset($_POST['size']) && isset($_POST['pattern']) &
                         deleteFromDatabase($data, $db);
                     }
                 }
+                echo createDropdown('searchsock', getSockNames($db));
+                ?>
+                <input class="submit" type="submit">
+            </form>
+            <div>
+                <?php
+
                 if (isset($_POST['searchsock'])) {
                     $sock = filter_var($_POST['searchsock'], FILTER_VALIDATE_INT);
                     if ($sock) {
